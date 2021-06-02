@@ -5,40 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EspOledTemp"
         mc:Ignorable="d"
-        Title="EspOledTemp" Height="337" Width="235.5">
-
+        Title="EspOledTemp" Height="337" Width="227.412">
     <Window.Resources>
         <Style x:Key="CustomWindow" TargetType="{x:Type Window}">
             <Setter Property="Background" Value="Black"/>
         </Style>
     </Window.Resources>
+    <Canvas>
 
-    <Grid Name="MCGrid" Background="Black" ShowGridLines="False" Margin="0,0,0,16" >
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="25" />
-            <RowDefinition Height="25" />
-            <RowDefinition Height="25" />
-            <RowDefinition Height="25" />
-            <RowDefinition Height="25" />
-            <RowDefinition Height="25" />
-            <RowDefinition Height="25" />
-            <RowDefinition Height="25" />
-            <RowDefinition Height="35" />
-            <RowDefinition Height="35" />
-        </Grid.RowDefinitions>
-        <Label x:Name="lblEotDate" Grid.Row="1" Grid.Column="1" Foreground="Cyan" Background="Black" Content="{Binding Path=EotDate}" />
-        <Label x:Name="lblEotTime" Grid.Row="2" Grid.Column="1" Foreground="Cyan" Background="Black" Content="{Binding Path=EotTime}" />
-        <Label x:Name="lblEotTemp" Grid.Row="3" Grid.Column="1" Foreground="Cyan" Background="Black" Content="{Binding Path=EotTemp}" />
-        <Label x:Name="lblEotHumidity" Grid.Row="4" Grid.Column="1" Foreground="Cyan" Background="Black" Content="{Binding Path=EotHumidity}" />
-        <Label x:Name="lblEotUptime" Grid.Row="5" Grid.Column="1" Foreground="Cyan" Background="Black" Content="{Binding Path=EotUptime}" />
-        <Label x:Name="lblEotUptimeHuman" Grid.Row="6" Grid.Column="1" Foreground="Cyan" Background="Black" Content="{Binding Path=EotUptimeHuman}" />
-        <Label x:Name="lblEotIp" Grid.Row="7" Grid.Column="1" Foreground="Cyan" Background="Black" Content="{Binding Path=EotIp}" />
-        <Label x:Name="lblUpdateTime"  Grid.Row="8" Grid.Column="1" Foreground="Cyan" Background="Black" Content="{Binding Path=EotUpdateTime}" />
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_Settings" Click="mnuSettings_Click" />
+                    <MenuItem Header="_Exit" Click="mnuExit_Click" />
+                </MenuItem>
+            </Menu>
+            <TextBox AcceptsReturn="True" />
+        </DockPanel>
 
-        <TextBlock Grid.Row="9"
+        <Grid Name="MCGrid" Background="Black" ShowGridLines="False" Canvas.Top="20" Width="219" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
+            </Grid.RowDefinitions>
+
+            <Label x:Name="lblEotDate" Grid.Row="1" Grid.Column="1" Foreground="Cyan" Background="Black" Content="{Binding Path=EotDate}" />
+            <Label x:Name="lblEotTime" Grid.Row="2" Grid.Column="1" Foreground="Cyan" Background="Black" Content="{Binding Path=EotTime}" />
+            <Label x:Name="lblEotTemp" Grid.Row="3" Grid.Column="1" Foreground="Cyan" Background="Black" Content="{Binding Path=EotTemp}" />
+            <Label x:Name="lblEotHumidity" Grid.Row="4" Grid.Column="1" Foreground="Cyan" Background="Black" Content="{Binding Path=EotHumidity}" />
+            <Label x:Name="lblEotUptime" Grid.Row="5" Grid.Column="1" Foreground="Cyan" Background="Black" Content="{Binding Path=EotUptime}" />
+            <Label x:Name="lblEotUptimeHuman" Grid.Row="6" Grid.Column="1" Foreground="Cyan" Background="Black" Content="{Binding Path=EotUptimeHuman}" />
+            <Label x:Name="lblEotIp" Grid.Row="7" Grid.Column="1" Foreground="Cyan" Background="Black" Content="{Binding Path=EotIp}" />
+            <Label x:Name="lblUpdateTime"  Grid.Row="8" Grid.Column="1" Foreground="Cyan" Background="Black" Content="{Binding Path=EotUpdateTime}" />
+
+            <TextBlock Grid.Row="9"
                    Foreground="Black"
                    Background="Cyan"
                    HorizontalAlignment="Center" 
@@ -50,6 +61,7 @@
                        RequestNavigate="Hyperlink_RequestNavigatePaheco">
                        www.paheco.nu
                    </Hyperlink>
-        </TextBlock>
-    </Grid>
+            </TextBlock>
+        </Grid>
+    </Canvas>
 </Window>

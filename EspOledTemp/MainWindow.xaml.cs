@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EspOledTemp.Functions;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -177,6 +178,16 @@ namespace EspOledTemp
         private void Hyperlink_RequestNavigatePaheco(object sender, RequestNavigateEventArgs e)
         {
             System.Diagnostics.Process.Start(e.Uri.ToString());
+        }
+        private void mnuSettings_Click(object sender, RoutedEventArgs e)
+        {
+            var sve = new saveSettings();
+            sve.mnuSettingsSaveClicked();
+        }
+        private void mnuExit_Click(object sender, RoutedEventArgs e)
+        {
+            var ext = new exit();
+            ext.mnuExitClicked();
         }
     }
 }
