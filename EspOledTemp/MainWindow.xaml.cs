@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows;
+using System.Windows.Navigation;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 
@@ -128,7 +129,7 @@ namespace EspOledTemp
          void MqttSubscribe()
         {
             // Create client instance.
-            MqttClient client = new MqttClient("192.168.1.190");
+            MqttClient client = new MqttClient(Properties.Settings.Default.MqttServer);
 
             // Register to message received.
             client.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
@@ -137,7 +138,7 @@ namespace EspOledTemp
             client.Connect(clientId);
 
             // subscribe to topics "EspOledTemp/#" with QoS 2 
-            client.Subscribe(new string[] { "EspOledTemp/#" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+            client.Subscribe(new string[] { Properties.Settings.Default.MqttTopic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
         }
 
         void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
