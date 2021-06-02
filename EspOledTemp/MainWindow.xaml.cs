@@ -1,24 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 
-namespace WpfApp1
+namespace EspOledTemp
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -31,6 +19,7 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
+
             lblEotDate.DataContext = mqttData;
             lblEotTime.DataContext = mqttData;
             lblEotTemp.DataContext = mqttData;
@@ -42,7 +31,7 @@ namespace WpfApp1
             // Display something while waiting for data.
             mqttData.EotTemp = "Wait...";
 
-            Subscribe();
+            MqttSubscribe();
         }
 
         public class MqttData : INotifyPropertyChanged
@@ -136,11 +125,7 @@ namespace WpfApp1
             }
         }
 
-        void client_MqttMsgSubscribed(object sender, MqttMsgSubscribedEventArgs e)
-        {
-            MessageBox.Show("Subscribed to Mqtt topic.");
-        }
-         void Subscribe()
+         void MqttSubscribe()
         {
             // Create client instance.
             MqttClient client = new MqttClient("192.168.1.190");
@@ -159,10 +144,9 @@ namespace WpfApp1
         {
             // Handle message. 
             var curData = Encoding.UTF8.GetString(e.Message);
-            Console.WriteLine("Received = " + curData + " on topic " + e.Topic);
-
             updateTime = DateTime.Now;
-            Console.WriteLine("Time: = " + updateTime);
+
+            Console.WriteLine ($"{updateTime} - Received = {curData} on topic {e.Topic}");
 
             switch (e.Topic)
             {
