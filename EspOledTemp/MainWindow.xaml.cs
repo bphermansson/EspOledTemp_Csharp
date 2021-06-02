@@ -136,7 +136,15 @@ namespace EspOledTemp
             client.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
 
             string clientId = Guid.NewGuid().ToString();
-            client.Connect(clientId);
+            
+            try
+            {
+                client.Connect(clientId);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Connection to Mqtt server failed!", "Connection failed", MessageBoxButton.OK);
+            }
 
             // subscribe to topics "EspOledTemp/#" with QoS 2 
             client.Subscribe(new string[] { Properties.Settings.Default.MqttTopic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
