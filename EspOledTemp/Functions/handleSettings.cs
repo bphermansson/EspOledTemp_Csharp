@@ -7,11 +7,12 @@ using System.Windows;
 
 namespace EspOledTemp
 {
-    public class saveSettings
+    public class handleSettings
     {
-        public void mnuSettingsSaveClicked()
+        public void mnuhandleSettingsClicked()
         {
-            MessageBox.Show("TBD");
+            settingsWindow SW = new settingsWindow();
+            SW.Show();
         }
     }
 }

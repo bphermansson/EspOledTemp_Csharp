@@ -1,6 +1,7 @@
 ﻿using EspOledTemp.Functions;
 using System;
 using System.ComponentModel;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows;
@@ -29,10 +30,10 @@ namespace EspOledTemp
             lblEotUptime.DataContext = mqttData;
             lblEotUptimeHuman.DataContext = mqttData;
             lblEotIp.DataContext = mqttData;
+            lblStatus.DataContext = mqttData;
 
-            // Display something while waiting for data.
-            mqttData.EotTemp = "Wait...";
-
+            // Update status label.
+            mqttData.StsStatus = "Wait...";
             MqttSubscribe();
         }
 
@@ -46,6 +47,7 @@ namespace EspOledTemp
             private string _eotUptimeHuman;
             private string _eotIp;
             private DateTime _updateTime;
+            private string _stsStatus;
 
             public string EotDate
             {
@@ -119,6 +121,15 @@ namespace EspOledTemp
                     OnPropertyChanged();
                 }
             }
+            public string StsStatus
+            {
+                get { return _stsStatus; }
+                set
+                {
+                    _stsStatus = value;
+                    OnPropertyChanged();
+                }
+            }
             public event PropertyChangedEventHandler PropertyChanged;
 
             protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
@@ -129,25 +140,42 @@ namespace EspOledTemp
 
          void MqttSubscribe()
         {
-            // Create client instance.
-            MqttClient client = new MqttClient(Properties.Settings.Default.MqttServer);
+            //MessageBox.Show(Properties.Settings.Default.MqttServer, "Start");
 
-            // Register to message received.
-            client.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
+            string mqttIp = Properties.Settings.Default.MqttServer;
+            IPAddress address;
 
-            string clientId = Guid.NewGuid().ToString();
-            
-            try
+            if (IPAddress.TryParse(mqttIp, out address))
             {
-                client.Connect(clientId);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Connection to Mqtt server failed!", "Connection failed", MessageBoxButton.OK);
-            }
+                //    MessageBox.Show(mqttIp, address.AddressFamily.ToString());
+                // Create client instance.
+                MqttClient client = new MqttClient(mqttIp);
 
-            // subscribe to topics "EspOledTemp/#" with QoS 2 
-            client.Subscribe(new string[] { Properties.Settings.Default.MqttTopic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+                try
+                {
+                    // Register to message received.
+                    client.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
+                }
+                catch
+                {
+                    MessageBox.Show("Mqtt error");
+                }
+
+
+                string clientId = Guid.NewGuid().ToString();
+
+                try
+                {
+                    client.Connect(clientId);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Connection to Mqtt server failed!", "Connection failed", MessageBoxButton.OK);
+                }
+                //MessageBox.Show("Connected to Mqtt server", "", MessageBoxButton.OK);
+
+                client.Subscribe(new string[] { Properties.Settings.Default.MqttTopic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+            }
         }
 
         void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
@@ -157,6 +185,7 @@ namespace EspOledTemp
             updateTime = DateTime.Now;
 
             Console.WriteLine ($"{updateTime} - Received = {curData} on topic {e.Topic}");
+            mqttData.StsStatus = $"{updateTime} - Data received";
 
             switch (e.Topic)
             {
@@ -189,8 +218,8 @@ namespace EspOledTemp
         }
         private void mnuSettings_Click(object sender, RoutedEventArgs e)
         {
-            var sve = new saveSettings();
-            sve.mnuSettingsSaveClicked();
+            var sve = new handleSettings();
+            sve.mnuhandleSettingsClicked();
         }
         private void mnuExit_Click(object sender, RoutedEventArgs e)
         {

@@ -5,16 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EspOledTemp"
         mc:Ignorable="d"
-        Title="EspOledTemp" Height="337" Width="227.412">
+        Title="EspOledTemp" Height="373" Width="223"
+        Background="LightBlue"
+        >
     <Window.Resources>
         <Style x:Key="CustomWindow" TargetType="{x:Type Window}">
             <Setter Property="Background" Value="Black"/>
         </Style>
     </Window.Resources>
-    <Canvas>
+    <Canvas Background="LightBlue">
 
-        <DockPanel>
-            <Menu DockPanel.Dock="Top">
+        <DockPanel Background="LightBlue">
+            <Menu DockPanel.Dock="Top" Background="LightBlue">
                 <MenuItem Header="_File">
                     <MenuItem Header="_Settings" Click="mnuSettings_Click" />
                     <MenuItem Header="_Exit" Click="mnuExit_Click" />
@@ -25,7 +27,8 @@
 
         <Grid Name="MCGrid" Background="Black" ShowGridLines="False" Canvas.Top="20" Width="219" >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
+                <ColumnDefinition Width="13*" />
+                <ColumnDefinition Width="206*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="25" />
@@ -38,23 +41,25 @@
                 <RowDefinition Height="25" />
                 <RowDefinition Height="35" />
                 <RowDefinition Height="35" />
+                <RowDefinition Height="45" />
             </Grid.RowDefinitions>
 
-            <Label x:Name="lblEotDate" Grid.Row="1" Grid.Column="1" Foreground="Cyan" Background="Black" Content="{Binding Path=EotDate}" />
-            <Label x:Name="lblEotTime" Grid.Row="2" Grid.Column="1" Foreground="Cyan" Background="Black" Content="{Binding Path=EotTime}" />
-            <Label x:Name="lblEotTemp" Grid.Row="3" Grid.Column="1" Foreground="Cyan" Background="Black" Content="{Binding Path=EotTemp}" />
-            <Label x:Name="lblEotHumidity" Grid.Row="4" Grid.Column="1" Foreground="Cyan" Background="Black" Content="{Binding Path=EotHumidity}" />
-            <Label x:Name="lblEotUptime" Grid.Row="5" Grid.Column="1" Foreground="Cyan" Background="Black" Content="{Binding Path=EotUptime}" />
-            <Label x:Name="lblEotUptimeHuman" Grid.Row="6" Grid.Column="1" Foreground="Cyan" Background="Black" Content="{Binding Path=EotUptimeHuman}" />
-            <Label x:Name="lblEotIp" Grid.Row="7" Grid.Column="1" Foreground="Cyan" Background="Black" Content="{Binding Path=EotIp}" />
-            <Label x:Name="lblUpdateTime"  Grid.Row="8" Grid.Column="1" Foreground="Cyan" Background="Black" Content="{Binding Path=EotUpdateTime}" />
-
-            <TextBlock Grid.Row="9"
+            <Label x:Name="lblEotDate" Grid.Row="1" Foreground="Cyan" Background="Black" Content="{Binding Path=EotDate}" Grid.ColumnSpan="2" />
+            <Label x:Name="lblEotTime" Grid.Row="2" Foreground="Cyan" Background="Black" Content="{Binding Path=EotTime}" Grid.ColumnSpan="2" />
+            <Label x:Name="lblEotTemp" Grid.Row="3" Foreground="Cyan" Background="Black" Content="{Binding Path=EotTemp}" Grid.ColumnSpan="2" />
+            <Label x:Name="lblEotHumidity" Grid.Row="4" Foreground="Cyan" Background="Black" Content="{Binding Path=EotHumidity}" Grid.ColumnSpan="2" />
+            <Label x:Name="lblEotUptime" Grid.Row="5" Foreground="Cyan" Background="Black" Content="{Binding Path=EotUptime}" Grid.ColumnSpan="2" />
+            <Label x:Name="lblEotUptimeHuman" Grid.Row="6" Foreground="Cyan" Background="Black" Content="{Binding Path=EotUptimeHuman}" Grid.ColumnSpan="2" />
+            <Label x:Name="lblEotIp" Grid.Row="7" Foreground="Cyan" Background="Black" Content="{Binding Path=EotIp}" Grid.ColumnSpan="2" />
+            <Label x:Name="lblUpdateTime"  Grid.Row="8" Foreground="Cyan" Background="Black" Content="{Binding Path=EotUpdateTime}" Grid.ColumnSpan="2" />
+            <Label x:Name="lblStatus"  Grid.Row="9" Foreground="Black" Background="LightBlue" Content="{Binding Path=StsStatus}" Grid.ColumnSpan="3" />
+            <TextBlock Grid.Row="10"
                    Foreground="Black"
-                   Background="Cyan"
+                   Background="LightBlue"
                    HorizontalAlignment="Center" 
                    VerticalAlignment="Center" 
-                   Padding="5"
+                   Padding="63"
+                   Width="223" Grid.ColumnSpan="2" Height="182"
                    >
                    <Hyperlink 
                        NavigateUri="http://www.paheco.nu"
@@ -62,6 +67,7 @@
                        www.paheco.nu
                    </Hyperlink>
             </TextBlock>
+
         </Grid>
     </Canvas>
 </Window>

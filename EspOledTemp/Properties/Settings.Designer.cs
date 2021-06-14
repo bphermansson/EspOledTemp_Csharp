@@ -34,7 +34,9 @@ namespace EspOledTemp.Properties {
                 this["MqttServer"] = value;
             }
         }
-        
+
+        public string mqttServer { get; internal set; }
+
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("EspOledTemp/#")]
