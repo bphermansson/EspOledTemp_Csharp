@@ -16,22 +16,53 @@
     <Grid Height="330" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" />
-            <ColumnDefinition Width="206*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+
+
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="35" />
             <RowDefinition Height="35" />
+            <RowDefinition Height="35" />
         </Grid.RowDefinitions>
+
         <Label x:Name="lblMqttServerSetting" 
                Grid.Row="1" 
                Grid.Column="0" 
                Foreground="Cyan" 
                Background="Black" 
-               Content="Mqttserver" 
+               Content="Mqttserver:" 
+               HorizontalAlignment="Right"
                Padding="10"
                />
-        <TextBox x:Name="txtMqttServerSetting" Grid.Row="1" Grid.Column="2" 
-                 Foreground="Cyan" Background="Black" 
-                 Text="{Binding Path=MqttServerIp}" Grid.ColumnSpan="2" />
+        <TextBox x:Name="txtMqttServerSetting"
+                Grid.Row="1" 
+                Grid.Column="1" 
+                Padding="10"
+                Foreground="Cyan" 
+                Background="Black" 
+                Text=""
+        />
+        <Button Content="Save" 
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Top" 
+                Width="75"
+                Padding="5"
+                Margin="5"
+                Grid.Row="2" 
+                Grid.Column="1" 
+                Click=""
+            />
+        <Button Content="Cancel" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Width="75"
+                Padding="5"
+                Margin="5"
+                Grid.Row="2" 
+                Grid.Column="2" 
+            />
+
     </Grid>
 </Window>

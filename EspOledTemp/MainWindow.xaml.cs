@@ -32,6 +32,11 @@ namespace EspOledTemp
             lblEotIp.DataContext = mqttData;
             lblStatus.DataContext = mqttData;
 
+            var Location = Properties.Settings.Default.MqttServer;
+
+            MessageBox.Show(Location, "Start");
+
+
             // Update status label.
             mqttData.StsStatus = "Wait...";
             MqttSubscribe();
@@ -140,9 +145,12 @@ namespace EspOledTemp
 
          void MqttSubscribe()
         {
-            //MessageBox.Show(Properties.Settings.Default.MqttServer, "Start");
+
 
             string mqttIp = Properties.Settings.Default.MqttServer;
+
+            //MessageBox.Show(Properties.Settings.Default.MqttServer, "Start");
+
             IPAddress address;
 
             if (IPAddress.TryParse(mqttIp, out address))
