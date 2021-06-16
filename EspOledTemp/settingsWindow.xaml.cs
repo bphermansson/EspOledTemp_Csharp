@@ -22,7 +22,18 @@ namespace EspOledTemp
             Properties.Settings.Default.MqttServer = txtMqttServerSetting.Text;
             Properties.Settings.Default.Save();
             Properties.Settings.Default.Upgrade();
+        }
+        void btnSaveClick(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.MqttServer = txtMqttServerSetting.Text;
+            Properties.Settings.Default.Save();
+            Properties.Settings.Default.Upgrade();
+            btnSave.IsEnabled = false;
+        }
+        void btnCancelClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
 
-        }       
     }
 }

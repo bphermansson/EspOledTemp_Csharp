@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EspOledTemp"
         mc:Ignorable="d"
-        Title="EspOledTemp" Height="373" Width="223"
+        Title="EspOledTemp" Height="363" Width="223"
         Background="LightBlue"
         >
     <Window.Resources>
@@ -41,7 +41,7 @@
                 <RowDefinition Height="25" />
                 <RowDefinition Height="35" />
                 <RowDefinition Height="35" />
-                <RowDefinition Height="45" />
+                <RowDefinition Height="49" />
             </Grid.RowDefinitions>
 
             <Label x:Name="lblEotDate" Grid.Row="1" Foreground="Cyan" Background="Black" Content="{Binding Path=EotDate}" Grid.ColumnSpan="2" />
