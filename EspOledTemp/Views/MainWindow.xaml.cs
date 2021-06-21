@@ -216,6 +216,11 @@ namespace EspOledTemp
             var sve = new handleSettings();
             sve.mnuhandleSettingsClicked();
         }
+        private void mnuAbout_Click(object sender, RoutedEventArgs e)
+        {
+            var abt = new about();
+            abt.mnuhandleAboutClicked();
+        }
         private void mnuExit_Click(object sender, RoutedEventArgs e)
         {
             var ext = new exit();

@@ -19,6 +19,7 @@
             <Menu DockPanel.Dock="Top" Background="LightBlue">
                 <MenuItem Header="_File">
                     <MenuItem Header="_Settings" Click="mnuSettings_Click" />
+                    <MenuItem Header="_About" Click="mnuAbout_Click" />
                     <MenuItem Header="_Exit" Click="mnuExit_Click" />
                 </MenuItem>
             </Menu>

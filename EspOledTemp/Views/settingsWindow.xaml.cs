@@ -29,6 +29,7 @@ namespace EspOledTemp
             Properties.Settings.Default.Save();
             Properties.Settings.Default.Upgrade();
             btnSave.IsEnabled = false;
+            Close();
         }
         void btnCancelClick(object sender, RoutedEventArgs e)
         {

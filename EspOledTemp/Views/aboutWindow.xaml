@@ -1,0 +1,28 @@
+﻿<Window x:Class="EspOledTemp.aboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EspOledTemp"
+        mc:Ignorable="d"
+        Title="About" Height="190" Width="250"
+        >
+
+
+    <Grid Margin="0,0,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="175*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock x:Name="aboutTxt" 
+            TextWrapping="WrapWithOverflow"
+            Padding ="5"
+            Margin="0,0,0,0"
+            Width="240"
+            HorizontalAlignment="Left"
+            >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec adipiscing
+    nulla quis libero egestas lobortis. Duis blandit imperdiet ornare. Nulla
+    ac arcu ut purus placerat congue. Integer pretium fermentum gravida.
+        </TextBlock>
+    </Grid>
+</Window>
