@@ -5,24 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EspOledTemp"
         mc:Ignorable="d"
-        Title="About" Height="190" Width="250"
+        Title="About" Height="250" Width="320"
+        Background="LightBlue"
+        MouseDown="aboutClicked"
         >
-
-
-    <Grid Margin="0,0,0,0">
+        
+        <Grid Margin="10,10,10,10">
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="175*"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55" />
+            <RowDefinition Height="55" />
+        </Grid.RowDefinitions>
+        
         <TextBlock x:Name="aboutTxt" 
             TextWrapping="WrapWithOverflow"
             Padding ="5"
-            Margin="0,0,0,0"
-            Width="240"
+            Margin="0,0,-56,-44"
+            Width="298"
             HorizontalAlignment="Left"
+            Grid.Row="0"
             >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec adipiscing
-    nulla quis libero egestas lobortis. Duis blandit imperdiet ornare. Nulla
-    ac arcu ut purus placerat congue. Integer pretium fermentum gravida.
+           The base for this project is a NodeMCU, a Soc based on ESP8266. It has a sensor for temperature and humidity connected, a HTU21D module. It also have an OLED connected for showing measured values, these values are also sent via Mqtt to a Mqtt-broker. The values are also presented via a dynamic webpage where you can see the values in near realtime.
+            This program is a Windows app that receives the Mqtt-values and display them in a window.
+            More info at https://github.com/bphermansson/EspOledTemp and https://github.com/bphermansson/EspOledTemp_Csharp.
         </TextBlock>
+        <RichTextBox IsReadOnly="True" IsDocumentEnabled="True"
+                        Grid.Row="1"
+         >
+            <FlowDocument>
+                <Paragraph>
+                    Please enter your details for login: questions follow the link
+                    <Hyperlink NavigateUri='https:www.paheco.nu' >
+                        Reset Password
+                    </Hyperlink>
+                    RequestNavigate="Hyperlink_RequestNavigateAbout">
+
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
     </Grid>
 </Window>
