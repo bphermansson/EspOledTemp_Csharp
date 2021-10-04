@@ -5,46 +5,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EspOledTemp"
         mc:Ignorable="d"
-        Title="About" Height="250" Width="320"
+        Title="About" Height="470.004" Width="320"
         Background="LightBlue"
         MouseDown="aboutClicked"
         >
         
-        <Grid Margin="10,10,10,10">
+        <Grid Margin="10,10,10,-31">
         
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="175*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="55" />
-            <RowDefinition Height="55" />
+            <RowDefinition Height="200" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
         </Grid.RowDefinitions>
         
         <TextBlock x:Name="aboutTxt" 
             TextWrapping="WrapWithOverflow"
             Padding ="5"
             Margin="0,0,-56,-44"
-            Width="298"
+            Width="264"
+            Height="Auto"       
             HorizontalAlignment="Left"
             Grid.Row="0"
+            Text="{Binding InfoText}"        
             >
-           The base for this project is a NodeMCU, a Soc based on ESP8266. It has a sensor for temperature and humidity connected, a HTU21D module. It also have an OLED connected for showing measured values, these values are also sent via Mqtt to a Mqtt-broker. The values are also presented via a dynamic webpage where you can see the values in near realtime.
-            This program is a Windows app that receives the Mqtt-values and display them in a window.
-            More info at https://github.com/bphermansson/EspOledTemp and https://github.com/bphermansson/EspOledTemp_Csharp.
         </TextBlock>
-        <RichTextBox IsReadOnly="True" IsDocumentEnabled="True"
-                        Grid.Row="1"
-         >
-            <FlowDocument>
-                <Paragraph>
-                    Please enter your details for login: questions follow the link
-                    <Hyperlink NavigateUri='https:www.paheco.nu' >
-                        Reset Password
-                    </Hyperlink>
-                    RequestNavigate="Hyperlink_RequestNavigateAbout">
+        <TextBlock x:Name="lnk1" 
+            TextWrapping="WrapWithOverflow"
+            Height="21"       
+            HorizontalAlignment="Left"
+            Grid.Row="1" Margin="0,23,0,-23" RenderTransformOrigin="0.507,1.293">
+            <Hyperlink NavigateUri = "https://github.com/bphermansson/EspOledTemp_Csharp"
+             RequestNavigate="Hyperlink_RequestNavigate">
+               This project on GitHub. 
+            </Hyperlink>
+        </TextBlock>
 
-                </Paragraph>
-            </FlowDocument>
-        </RichTextBox>
+        <TextBlock
+            Grid.Row="2"
+            x:Name="lnk2" Margin="0,23,0,-23" Height="21" >
+            <Hyperlink NavigateUri = "https://github.com/bphermansson/EspOledTemp"
+             RequestNavigate="Hyperlink_RequestNavigate">
+                Main project on GitHub.
+            </Hyperlink>
+        </TextBlock>
+            
     </Grid>
 </Window>
